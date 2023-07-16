@@ -6,11 +6,11 @@ export default function Display({expression, result}) {
                 <div className="text-xs">
                     {'M'}
                 </div>
-                <div className="text-3xl">
+                <div className="text-lg">
                     {expression}
                 </div>
             </div>
-            <div className="text-5xl h-[100%] flex items-end py-2">
+            <div className="text-2xl h-[100%] flex items-end py-2">
                 {result}
             </div>
         </div>
