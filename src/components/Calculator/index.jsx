@@ -1,8 +1,8 @@
 import {useState} from "react"
 import * as math from 'mathjs'
 
-import Button from "./components/Button"
-import Display from "./components/Display"
+import Button from "../Button"
+import Display from "../Display"
 import { Backspace } from "@phosphor-icons/react"
 
 export default function Calculator() {
