@@ -1,6 +1,14 @@
 // eslint-disable-next-line react/prop-types
-export default function Button({ text }) {
+export default function Button({ text, handleClick, textColor, backgroundColor }) {
+    if (!textColor) {
+       textColor = 'text-white' 
+    }
+
+    if (!backgroundColor) {
+        backgroundColor = 'bg-[#3a3a3a]'
+    }
+
     return(
-        <button className="bg-[#3a3a3a] w-[3.8rem] h-[3.8rem] rounded-full text-white hover:bg-[#2a2a2a] font-semibold">{text}</button>
+        <button className={`${backgroundColor} w-[3.8rem] h-[3.8rem] rounded-full ${textColor} hover:opacity-75 font-bold`} onClick={() => handleClick(text)}>{text}</button>
     )
 }

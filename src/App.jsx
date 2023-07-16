@@ -1,36 +1,79 @@
-//import Button from './components/Button'
+import {useState} from "react"
+import * as math from 'mathjs'
 
 import Button from "./components/Button"
 import Display from "./components/Display"
 
 function App() {
+  const [expression, setExpression] = useState("")
+  const [result, setResult] = useState("")
+
+  function addToExpression(val) {
+    setExpression((expression) => [...expression, val])
+  }
+
+  function clearInput() {
+    setExpression('')
+    setResult('')
+  }
+
+  function deleteInput() {
+    setExpression(expression.slice(0, -1))
+    setResult('')
+  }
+
+  function calculateResult() {
+    try {
+      const input = expression.join("")
+      console.log(input)
+
+      setResult(math.evaluate(input))
+    } catch (error) {
+      alert("Operação inválida")
+    }
+  }
 
   return (
     <div className='bg-[#2a2a2a] w-[100vw] h-[100vh] flex items-center justify-center'>
       <div className='bg-[#202020] h-[90vh] w-[25rem] rounded-2xl shadow-2xl p-7 flex items-center flex-col gap-8'>
-        <Display text={'8 + 5'} result={'13'}/>
-        <div className="flex flex-wrap gap-3 items-center justify-center">
-          <Button text={'MC'}/>
-          <Button text={'MR'}/>
-          <Button text={'M+'}/>
-          <Button text={'M-'}/>
-          <Button text={'X'}/>
-          <Button text={'+'}/>
-          <Button text={'-'}/>
-          <Button text={'/'}/>
-          <Button text={'1'}/>
-          <Button text={'2'}/>
-          <Button text={'3'}/>
-          <Button text={'4'}/>
-          <Button text={'5'}/>
-          <Button text={'6'}/>
-          <Button text={'7'}/>
-          <Button text={'8'}/>
-          <Button text={'9'}/>
-          <Button text={'0'}/>
-          <Button text={'.'}/>
-          <Button text={'DEL'}/>
-          <Button text={'='}/>
+        <Display expression={expression} result={result}/>
+        <div className="flex flex-col gap-3 w-[90%] items-end">
+          <div className="flex justify-between w-[100%]">
+            <Button text={'MC'} textColor={'text-blue-400'}/>
+            <Button text={'MR'} textColor={'text-blue-400'}/>
+            <Button text={'M+'} textColor={'text-blue-400'}/>
+            <Button text={'M-'} textColor={'text-blue-400'}/>
+          </div>
+          <div className="flex justify-between w-[100%]">
+            <Button text={'+'} handleClick={addToExpression} textColor={'text-blue-400'}/>
+            <Button text={'-'} handleClick={addToExpression} textColor={'text-blue-400'}/>
+            <Button text={'*'} handleClick={addToExpression} textColor={'text-blue-400'}/>
+            <Button text={'/'} handleClick={addToExpression} textColor={'text-blue-400'}/>
+          </div>
+          <div className="flex justify-between w-[100%]">
+            <Button text={'1'} handleClick={addToExpression}/>
+            <Button text={'2'} handleClick={addToExpression}/>
+            <Button text={'3'} handleClick={addToExpression}/>
+            <Button text={'4'} handleClick={addToExpression}/>
+          </div>
+          <div className="flex justify-between w-[100%]">
+            <Button text={'5'} handleClick={addToExpression}/>
+            <Button text={'6'} handleClick={addToExpression}/>
+            <Button text={'7'} handleClick={addToExpression}/>
+            <Button text={'8'} handleClick={addToExpression}/>
+          </div>
+          <div className="flex justify-between w-[100%]">
+            <Button text={'9'} handleClick={addToExpression}/>
+            <Button text={'0'} handleClick={addToExpression}/>
+            <Button text={'.'} handleClick={addToExpression}/>
+            <Button text={'='} handleClick={calculateResult} backgroundColor={'bg-blue-400'}/>
+          </div>
+          <div className="w-[100%] flex justify-between">
+            <div className="w-[3.8rem] h-[3.8rem]"></div>
+            <div className="w-[3.8rem] h-[3.8rem]"></div>
+            <Button text={'C'} handleClick={clearInput}/>
+            <Button text={'DEL'} handleClick={deleteInput}/>
+          </div>
         </div>
       </div>
     </div>
