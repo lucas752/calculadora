@@ -1,5 +1,6 @@
 import {useState} from "react"
 import * as math from 'mathjs'
+import { toast } from 'react-toastify';
 
 import Button from "../Button"
 import Display from "../Display"
@@ -19,10 +20,24 @@ export default function Calculator() {
         setResult('')
     }
 
+    function errorToast(nanNumber) {
+        const text = nanNumber ? 'Você só pode adicionar números válidos a memória' : 'Operação inválida!'
+        toast.error(text, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+        }); 
+    }
+
     function addToMemory() {
         const number = parseInt(expression.join(''))
         if (isNaN(number)) {
-            console.log("isso não é um número")        
+            errorToast(true)
         } else {
             setMemory(memory + number)
         }
@@ -35,7 +50,7 @@ export default function Calculator() {
     function subMemory() {
         const number = parseInt(expression.join(''))
         if (isNaN(number)) {
-            console.log("isso não é um número")
+            errorToast(true)
         } else {
             setMemory(memory - number)
         }
@@ -52,12 +67,10 @@ export default function Calculator() {
 
     function calculateResult() {
         try {
-        const input = expression.join("")
-        console.log(input)
-
-        setResult(math.evaluate(input))
+            const input = expression.join("")
+            setResult(math.evaluate(input))
         } catch (error) {
-        alert("Operação inválida")
+            errorToast(false)
         }
     }
 
