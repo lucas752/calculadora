@@ -40,7 +40,7 @@ export default function Calculator() {
 
     function addToMemory() {
         if (expression != "") {    
-            const number = parseInt(expression.join(""))
+            const number = parseFloat(expression.join(""))
             if (isNaN(number)) {
                 errorToast(true)
             } else {
@@ -54,7 +54,7 @@ export default function Calculator() {
     }
 
     function subMemory() {
-        const number = parseInt(expression.join(""))
+        const number = parseFloat(expression.join(""))
         if (isNaN(number)) {
             errorToast(true)
         } else {
