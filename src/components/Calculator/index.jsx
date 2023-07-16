@@ -16,26 +16,26 @@ export default function Calculator() {
     }
 
     function clearInput() {
-        setExpression('')
-        setResult('')
+        setExpression("")
+        setResult("")
     }
 
     function errorToast(nanNumber) {
-        const text = nanNumber ? 'Você só pode adicionar números válidos a memória' : 'Operação inválida!'
+        const text = nanNumber ? "Você só pode adicionar números válidos a memória!" : "Operação inválida!"
         toast.error(text, {
             position: "top-right",
-            autoClose: 5000,
+            autoClose: 4000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
-            theme: "dark",
+            theme: "light",
         }); 
     }
 
     function addToMemory() {
-        const number = parseInt(expression.join(''))
+        const number = parseInt(expression.join(""))
         if (isNaN(number)) {
             errorToast(true)
         } else {
@@ -48,7 +48,7 @@ export default function Calculator() {
     }
 
     function subMemory() {
-        const number = parseInt(expression.join(''))
+        const number = parseInt(expression.join(""))
         if (isNaN(number)) {
             errorToast(true)
         } else {
@@ -75,8 +75,8 @@ export default function Calculator() {
     }
 
     return (
-        <div className='bg-[#202020] h-[95vh] w-[25rem] rounded-2xl shadow-2xl px-7 py-8 flex items-center justify-between flex-col gap-8'>
-            <Display expression={expression} result={result} memory={memory}/>
+        <div className="bg-[#202020] h-[95vh] w-[25rem] rounded-2xl shadow-2xl px-7 py-8 flex items-center justify-between flex-col gap-8">
+            <Display expression={expression} result={result} memory={memory == 0 ? '' : 'M'}/>
             <div className="flex flex-col gap-3 w-[90%] items-end">
             <div className="flex justify-between w-[100%]">
                 <Button text={'MC'} textColor={'text-blue-400'} handleClick={clearMemory}/>
