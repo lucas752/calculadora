@@ -35,7 +35,7 @@ export default function Calculator() {
     }
 
     return (
-        <div className='bg-[#202020] h-[90vh] w-[25rem] rounded-2xl shadow-2xl p-7 flex items-center flex-col gap-8'>
+        <div className='bg-[#202020] h-[95vh] w-[25rem] rounded-2xl shadow-2xl px-7 py-8 flex items-center justify-between flex-col gap-8'>
             <Display expression={expression} result={result}/>
             <div className="flex flex-col gap-3 w-[90%] items-end">
             <div className="flex justify-between w-[100%]">
