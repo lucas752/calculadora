@@ -8,14 +8,41 @@ import { Backspace } from "@phosphor-icons/react"
 export default function Calculator() {
     const [expression, setExpression] = useState("")
     const [result, setResult] = useState("")
+    const [memory, setMemory] = useState(0)
 
-    function addToExpression(val) {
-        setExpression((expression) => [...expression, val])
+    function addToExpression(value) {
+        setExpression((expression) => [...expression, value])
     }
 
     function clearInput() {
         setExpression('')
         setResult('')
+    }
+
+    function addToMemory() {
+        const number = parseInt(expression.join(''))
+        if (isNaN(number)) {
+            console.log("isso não é um número")        
+        } else {
+            setMemory(memory + number)
+        }
+    }
+
+    function clearMemory() {
+        setMemory(0);
+    }
+
+    function subMemory() {
+        const number = parseInt(expression.join(''))
+        if (isNaN(number)) {
+            console.log("isso não é um número")
+        } else {
+            setMemory(memory - number)
+        }
+    }
+
+    function requestMemory() {
+        setExpression((expression) => [...expression, memory])
     }
 
     function deleteInput() {
@@ -36,13 +63,13 @@ export default function Calculator() {
 
     return (
         <div className='bg-[#202020] h-[95vh] w-[25rem] rounded-2xl shadow-2xl px-7 py-8 flex items-center justify-between flex-col gap-8'>
-            <Display expression={expression} result={result}/>
+            <Display expression={expression} result={result} memory={memory}/>
             <div className="flex flex-col gap-3 w-[90%] items-end">
             <div className="flex justify-between w-[100%]">
-                <Button text={'MC'} textColor={'text-blue-400'}/>
-                <Button text={'MR'} textColor={'text-blue-400'}/>
-                <Button text={'M+'} textColor={'text-blue-400'}/>
-                <Button text={'M-'} textColor={'text-blue-400'}/>
+                <Button text={'MC'} textColor={'text-blue-400'} handleClick={clearMemory}/>
+                <Button text={'MR'} textColor={'text-blue-400'} handleClick={requestMemory}/>
+                <Button text={'M+'} textColor={'text-blue-400'} handleClick={addToMemory}/>
+                <Button text={'M-'} textColor={'text-blue-400'} handleClick={subMemory}/>
             </div>
             <div className="flex justify-between w-[100%]">
                 <Button text={'+'} handleClick={addToExpression} textColor={'text-blue-400'}/>
