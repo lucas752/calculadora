@@ -3,6 +3,7 @@ import * as math from 'mathjs'
 
 import Button from "./components/Button"
 import Display from "./components/Display"
+import { Backspace } from "@phosphor-icons/react"
 
 function App() {
   const [expression, setExpression] = useState("")
@@ -71,8 +72,8 @@ function App() {
           <div className="w-[100%] flex justify-between">
             <div className="w-[3.8rem] h-[3.8rem]"></div>
             <div className="w-[3.8rem] h-[3.8rem]"></div>
-            <Button text={'C'} handleClick={clearInput}/>
-            <Button text={'DEL'} handleClick={deleteInput}/>
+            <Button text={'C'} handleClick={clearInput} textColor={'text-red-400'}/>
+            <Button text={<Backspace size={25} weight="bold" color="#f87171"/>} handleClick={deleteInput} />
           </div>
         </div>
       </div>
