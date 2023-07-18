@@ -111,13 +111,13 @@ export default function Calculator() {
                 <div className="flex justify-between w-[100%]">
                     <Button text={'0'} handleClick={addToExpression}/>
                     <Button text={'.'} handleClick={addToExpression}/>
-                    <Button text={<Backspace size={25} weight="bold" color="#f87171"/>} handleClick={deleteInput} />
+                    <Button text={'C'} handleClick={clearInput} textColor={'text-red-400'}/>
                     <Button text={'/'} handleClick={addToExpression} textColor={'text-blue-400'}/>
                 </div>
                 <div className="w-[100%] flex justify-between">
                     <div className="w-[3.8rem] h-[3.8rem]"></div>
                     <div className="w-[3.8rem] h-[3.8rem]"></div>
-                    <Button text={'C'} handleClick={clearInput} textColor={'text-red-400'}/>
+                    <Button text={<Backspace size={25} weight="bold" color="#f87171"/>} handleClick={deleteInput} />
                     <Button text={'='} handleClick={calculateResult} backgroundColor={'bg-blue-400'}/>
                 </div>
             </div>
